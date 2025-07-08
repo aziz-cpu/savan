@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Svan Gold Investment Platform</title>
+
+  <!-- AOS Animation -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="ee.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #fff;
+      color: #222;
+    }
+    header {
+      background: #0f1b2a;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .logo {
+      color: gold;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      padding: 8px 12px;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: gold;
+      transition: 0.4s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: gold;
+    }
+    .cta-button {
+      background: gold;
+      color: #0f1b2a;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .cta-button:hover {
+      background: #d4af37;
+    }
+    .language-toggle {
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid gold;
+      color: white;
+      border-radius: 5px;
+      padding: 4px 10px;
+    }
+    .hero-slider {
+      position: relative;
+      height: 90vh;
+      overflow: hidden;
+    }
+    .slides {
+      height: 100%;
+      position: relative;
+    }
+    .slide {
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 1;
+    }
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      z-index: 3;
+      padding: 0 20px;
+    }
+    .overlay h2 {
+      font-size: 3rem;
+      color: gold;
+      margin-bottom: 15px;
+    }
+    .overlay p {
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+    }
+    .dots {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      z-index: 4;
+      left: 0;
+      right: 0;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: white;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .dot.active {
+      background: gold;
+      opacity: 1;
+    }
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .plans, .stats, .gallery {
+      text-align: center;
+    }
+    .plans h3, .stats h3, .gallery h3 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+    .plan-cards, .stat-boxes, .gallery-images {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .card, .stat {
+      background: white;
+      border: 2px solid gold;
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      transition: transform 0.3s;
+    }
+    .card:hover, .stat:hover {
+      transform: translateY(-10px);
+    }
+    .card h4 {
+      font-size: 1.5rem;
+      color: #0f1b2a;
+    }
+    .card p {
+      margin: 10px 0;
+    }
+    .stats {
+      background: #1e2c40;
+      color: white;
+    }
+    .stats h3 {
+      color: gold;
+    }
+    .gallery-images img {
+      width: 230px;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 2px solid gold;
+      transition: transform 0.4s ease;
+    }
+    .gallery-images img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      padding: 20px;
+      background: #0f1b2a;
+      color: white;
+      text-align: center;
+    }
+  </style>
+</head>
+<body style="background-color: #0f1b2a;">
+  <header data-aos="fade-down">
+    <div class="logo">Svan Gold</div>
+    <nav>
+      <a href="#" data-en="Home" data-ar="الرئيسية">Home</a>
+      <a href="#" data-en="About Us" data-ar="من نحن">About Us</a>
+      <a href="#" data-en="Plans" data-ar="الخطط">Plans</a>
+      <a href="#" data-en="Blog" data-ar="المدونة">Blog</a>
+      <a href="#" data-en="Contact" data-ar="تواصل معنا">Contact</a>
+      <a href="#" class="cta-button" data-en="Login" data-ar="تسجيل الدخول">Login</a>
+      <button class="language-toggle" onclick="toggleLanguage()">عربي</button>
+    </nav>
+  </header>
+
+  <section class="hero-slider">
+    <div class="slides">
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1350&q=80');"></div>
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1350&q=80');"></div>
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1350&q=80');"></div>
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1350&q=80');"></div>
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1350&q=80');"></div>
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1350&q=80');"></div>
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1350&q=80');"></div>
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1350&q=80');"></div>
+    </div>
+    <div class="overlay">
+      <h2 data-aos="fade-down" data-en="Start Your Gold Investment Journey" data-ar="من هنا يبدأ تداولك معنا">Start Your Gold Investment Journey</h2>
+      <p data-aos="fade-up" data-en="Invest securely and confidently with Svan Gold" data-ar="ابدأ رحلتك الاستثمارية بثقة مع Svan Gold">Invest securely and confidently with Svan Gold</p>
+      <a href="#" class="cta-button" data-aos="zoom-in" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
+    </div>
+    <div class="dots"></div>
+  </section>
+
+  <section class="plans" data-aos="fade-up">
+    <h3 data-en="Investment Plans" data-ar="خطط الاستثمار" style="color: #d4af37;">Investment Plans</h3>
+    <div class="plan-cards">
+      <div class="card" data-aos="flip-right">
+        <h4>Bronze</h4>
+        <p>$100 - $1,000</p>
+        <p>Monthly return: 4% - 10%</p>
+      </div>
+      <div class="card" data-aos="flip-up">
+        <h4>Gold</h4>
+        <p>$1,001 - $5,000</p>
+        <p>Monthly return: 10% - 15%</p>
+      </div>
+      <div class="card" data-aos="flip-left">
+        <h4>Platinum</h4>
+        <p>$5,001+</p>
+        <p>Monthly return: up to 25%</p>
+      </div>
+    </div>
+  </section>
+   <main class="container" style="background-color: #0f1b2a;">
+        <h1 class="page-title">INGOTS</h1>
+
+        <div class="main-content-area">
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h3>أنواع الذهب</h3>
+                    <ul>
+                        <li><a href="#">كل المنتجات</a></li>
+                        <li><a href="#">سبائك الذهب</a></li>
+                        <li><a href="#">جنيات الذهب</a></li>
+                        <li><a href="#">مشغولات</a></li>
+                    </ul>
+                </div>
+
+                <div class="filter-section price-filter">
+                    <h3>تصفية حسب السعر</h3>
+                    <p>النطاق: <span>3,500.00 جنيه مصري</span> – <span>2,500,000.00 جنيه مصري</span></p>
+                    <div class="price-range-slider"></div> <button style="background-color: #c9a44c; color: #1e252c; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px;">تصفية</button>
+                </div>
+
+                <div class="filter-section recent-purchases">
+                    <h3>المشتريات الأخيرة</h3>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/60x60?text=Gold" alt="Gold Product">
+                        <div class="product-info">
+                            <h4>سبيكة ذهب 10 جرام</h4>
+                            <p>27,400.00 جنيه مصري</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/60x60?text=Gold" alt="Gold Product">
+                        <div class="product-info">
+                            <h4>جنيه ذهب عيار 24</h4>
+                            <p>18,750.00 جنيه مصري</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/60x60?text=Gold" alt="Gold Product">
+                        <div class="product-info">
+                            <h4>سبيكة ذهب 20 جرام</h4>
+                            <p>54,720.00 جنيه مصري</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Gold+Ingot" alt="Gold Ingot 1">
+                    <h3>سبيكة ذهب 1 جرام</h3>
+                    <p>3,200.00 جنيه مصري</p>
+                    <a href="#" class="add-to-cart-btn">أضف إلى السلة</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Gold+Ingot" alt="Gold Ingot 2">
+                    <h3>سبيكة ذهب 2.5 جرام</h3>
+                    <p>8,150.00 جنيه مصري</p>
+                    <a href="#" class="add-to-cart-btn">أضف إلى السلة</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Gold+Ingot" alt="Gold Ingot 3">
+                    <h3>سبيكة ذهب 5 جرام</h3>
+                    <p>13,440.00 جنيه مصري</p>
+                    <a href="#" class="add-to-cart-btn">أضف إلى السلة</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Gold+Ingot" alt="Gold Ingot 4">
+                    <h3>سبيكة ذهب 10 جرام</h3>
+                    <p>27,400.00 جنيه مصري</p>
+                    <a href="#" class="add-to-cart-btn">أضف إلى السلة</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Gold+Ingot" alt="Gold Ingot 5">
+                    <h3>سبيكة ذهب 20 جرام</h3>
+                    <p>54,720.00 جنيه مصري</p>
+                    <a href="#" class="add-to-cart-btn">أضف إلى السلة</a>
+                </div>
+                 <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Gold+Ingot" alt="Gold Ingot 6">
+                    <h3>سبيكة ذهب 50 جرام</h3>
+                    <p>136,800.00 جنيه مصري</p>
+                    <a href="#" class="add-to-cart-btn">أضف إلى السلة</a>
+                </div>
+                 <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Gold+Ingot" alt="Gold Ingot 7">
+                    <h3>سبيكة ذهب 100 جرام</h3>
+                    <p>273,600.00 جنيه مصري</p>
+                    <a href="#" class="add-to-cart-btn">أضف إلى السلة</a>
+                </div>
+                 <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Gold+Ingot" alt="Gold Ingot 8">
+                    <h3>سبيكة ذهب 250 جرام</h3>
+                    <p>684,000.00 جنيه مصري</p>
+                    <a href="#" class="add-to-cart-btn">أضف إلى السلة</a>
+                </div>
+                 <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Gold+Ingot" alt="Gold Ingot 9">
+                    <h3>سبيكة ذهب 500 جرام</h3>
+                    <p>1,368,000.00 جنيه مصري</p>
+                    <a href="#" class="add-to-cart-btn">أضف إلى السلة</a>
+                </div>
+                </section>
+        </div>
+    </main>
+
+  <div class="tradingview-widget-container">
+  <div id="tradingview_1b33e1"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+  new TradingView.widget(
+  {
+  "width": "100%", //
+  "height": "610", // 
+  "symbol": "XAUUSD", //
+  "interval": "D", 
+  "timezone": "Etc/UTC", 
+  "theme": "dark", 
+  "style": "1", // نمط العرض
+  "locale": "ar", // 
+  "toolbar_bg": "#f1f3f6", // 
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "container_id": "tradingview_1b33e1"
+}
+  );
+  </script>
+</div>
+
+  <section class="stats" data-aos="fade-in">
+    <h3 data-en="Why Choose Us?" data-ar="لماذا نحن؟">Why Choose Us?</h3>
+    <div class="stat-boxes">
+      <div class="stat" data-aos="fade-up">5+ Years of Experience</div>
+      <div class="stat" data-aos="fade-up" data-aos-delay="200">10,000+ Investors</div>
+      <div class="stat" data-aos="fade-up" data-aos-delay="400">$50M Managed Capital</div>
+    </div>
+  </section>
+
+  
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <div class="footer-logo"> savana</div>
+                <p>نحن نقدم أفضل أنواع الذهب والسبائك بأعلى جودة. تابعونا على:</p>
+                <div class="social-icons">
+                    <span>فيس بوك</span> <span>انستجرام</span> <span>تويتر</span> </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>تسوق عبر الإنترنت</h3>
+                <ul>
+                    <li><a href="#">شراء الذهب</a></li>
+                    <li><a href="#">سبائك</a></li>
+                    <li><a href="#">جنيات</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>روابط</h3>
+                <ul>
+                    <li><a href="#">الأسئلة الشائعة</a></li>
+                    <li><a href="#">سياسة الشحن</a></li>
+                    <li><a href="#">سياسة الإرجاع</a></li>
+                    <li><a href="#">شروط الخدمة</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>عناوين الفروع</h3>
+                <p>
+                    **القاهرة:**<br>
+                    مصر الجديدة، مدينة نصر، التجمع الخامس<br>
+                    **الإسكندرية:**<br>
+                    سموحة، سيدي جابر<br>
+                    **أسيوط:**<br>
+                    شارع الجمهورية
+                </p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                &copy; 2024  savana. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+
+  let slideIndex = 0;
+  const slides = document.querySelectorAll(".slide");
+  const dotsContainer = document.querySelector(".dots");
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => showSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll(".dot");
+
+  function showSlide(index) {
+    slides[slideIndex].classList.remove("active");
+    dots[slideIndex].classList.remove("active");
+    slideIndex = index;
+    slides[slideIndex].classList.add("active");
+    dots[slideIndex].classList.add("active");
+  }
+
+  setInterval(() => {
+    let nextIndex = (slideIndex + 1) % slides.length;
+    showSlide(nextIndex);
+  }, 5000);
+
+  function toggleLanguage() {
+    const html = document.documentElement;
+    const currentLang = html.lang;
+    const isEnglish = currentLang === 'en';
+    const newLang = isEnglish ? 'ar' : 'en';
+    const newDir = isEnglish ? 'rtl' : 'ltr';
+
+    html.lang = newLang;
+    html.dir = newDir;
+    localStorage.setItem('siteLang', newLang);
+
+    const elements = document.querySelectorAll('[data-en][data-ar]');
+    elements.forEach(el => {
+      el.textContent = el.dataset[newLang];
+    });
+
+    const langButton = document.querySelector('.language-toggle');
+    langButton.textContent = isEnglish ? 'English' : 'عربي';
+  }
+
+  // Load saved language from localStorage
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('siteLang');
+    if (savedLang && savedLang !== document.documentElement.lang) {
+      toggleLanguage();
+    }
+  });
+</script>
+</body>
+</html>
